@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build && node dist/index.js",
-    "build": "rimraf ./dist && tsc",
+    "build": "rm -rf ./dist && tsc",
     "start:dev": "npm run build:dev",
     "build:dev": "nodemon src/index.ts --exec ts-node src/index.ts -e ts,graphql",
     "seed": "ts-node src/seed.ts"
