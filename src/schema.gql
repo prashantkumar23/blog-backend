@@ -241,38 +241,11 @@ type ListOfUsers {
   name: String!
 }
 
-input LoginInput {
-  password: String!
-  username: String!
-}
-
-type LoginPayload {
-  accessToken: String!
-  refreshToken: String!
-}
-
-type LoginResponse {
-  loginPayload: LoginPayload
-  message: String!
-  status: Boolean!
-}
-
-input LogoutInput {
-  refreshToken: String!
-}
-
-type LogoutResponse {
-  message: String!
-  status: Boolean!
-}
-
 type Mutation {
   addComment(addCommentInput: AddCommentInput!): AddCommentResponse!
   createBlog(createBlogInput: CreateBlogInput!): CreateBlogResponse!
   deleteComment(updateCommentInput: DeleteCommentInput!): DeleteCommentResponse!
   imageUpload(imageUploadInput: ImageUploadInput!): ImageUploadResponse!
-  login(loginInput: LoginInput!): LoginResponse!
-  register(registerInput: RegisterInput!): RegisterResponse!
   updateBio(updateBioInput: UpdateBioInput!): UpdateBioResponse
   updateComment(updateCommentInput: UpdateCommentInput!): UpdateCommentResponse!
 }
@@ -316,40 +289,7 @@ type Query {
   getUserBlogsFromOtherUsers(getUserBlogsFromOtherUsersInput: GetUserBlogsFromOtherUsersInput!): GetUserBlogsFromOtherUsersResponse
   getUserInfo(userId: GetUserInfoInput!): GetUserInfoResponse
   getUserInfoFromName(name: GetUserInfoFromNameInput!): GetUserInfoFromNameResponse
-  logout(logoutInput: LogoutInput!): LogoutResponse!
-  refreshToken(refreshTokenInput: RefreshTokenInput!): RefreshTokenResponse!
   search(createBlogInput: SearchInput!): SearchResponse!
-}
-
-input RefreshTokenInput {
-  refreshToken: String!
-}
-
-type RefreshTokenPayload {
-  accessToken: String!
-  refreshToken: String!
-}
-
-type RefreshTokenResponse {
-  message: String!
-  refreshTokenPayload: RefreshTokenPayload!
-  status: Boolean!
-}
-
-input RegisterInput {
-  password: String!
-  username: String!
-}
-
-type RegisterPayload {
-  accessToken: String!
-  refreshToken: String!
-}
-
-type RegisterResponse {
-  message: String!
-  registerPayload: RegisterPayload
-  status: Boolean!
 }
 
 input SearchInput {
