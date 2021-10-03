@@ -47,12 +47,14 @@ export class CreateBlogResolver {
                 body,
                 tags,
                 blogImageUrl
+            }).then(() => {
+                return {
+                    status: true,
+                    message: "Blog Published!"
+                }
             })
 
-            return {
-                status: true,
-                message: "Blog Published!"
-            }
+
         } catch (error: any) {
             return { status: false, message: error?.message }
         }
