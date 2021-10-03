@@ -12,7 +12,7 @@ export interface Blog {
 }
 
 const schema = new Schema<Blog>({
-    title: { type: String, required: true, maxlength: 40, minlength: 10 },
+    title: { type: String, required: true, minlength: 10 },
     body: { type: String, required: true },
     blogImageUrl: { type: String, required: false },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],

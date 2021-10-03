@@ -1,6 +1,5 @@
 import { Resolver, InputType, Field, ObjectType, Arg, Mutation } from "type-graphql";
 import BlogModel from '../../../models/Blog';
-import createErrors from 'http-errors';
 
 @InputType()
 class CreateBlogInput {
@@ -32,27 +31,26 @@ class CreateBlogResponse {
 
 @Resolver()
 export class CreateBlogResolver {
-    // @UseMiddleware(isAuthenticated)
     @Mutation(() => CreateBlogResponse)
     async createBlog(
         @Arg('createBlogInput') { userId, title, body, tags, blogImageUrl }: CreateBlogInput
     ): Promise<CreateBlogResponse> {
         try {
-            // const user = ctx.req.body.aud;
-            // console.log('User ', user);
 
-            await BlogModel.create({
+            const newBlog = new BlogModel({
                 user: userId,
                 title,
                 body,
                 tags,
                 blogImageUrl
-            }).then(() => {
-                return {
-                    status: true,
-                    message: "Blog Published!"
-                }
             })
+
+            await newBlog.save()
+
+            return {
+                status: true,
+                message: "Blog published!"
+            }
 
 
         } catch (error: any) {
